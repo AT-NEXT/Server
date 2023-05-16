@@ -13,7 +13,7 @@ dotenv.config();
 let ThreadCount = 1;
 let app = express();
 let server = createServerHttp(app);
-let pb = new PocketBase('http://dedi.btx.systems:9090');
+let pb = new PocketBase(process.env.POCKETBASE_URL as string);
 let adminUser: any;
 
 Logger.logClean(`
