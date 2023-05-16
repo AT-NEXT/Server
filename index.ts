@@ -7,6 +7,7 @@ import dotenv from "dotenv";
 
 import { createServer } from "https";
 import { createServer as createServerHttp } from "http";
+import ApiV1 from "./api/V1";
 
 dotenv.config();
 
@@ -51,7 +52,7 @@ server.listen(3000, () => {
 
     Logger.log('API', 'Loading API v1');
 
-    apiV1 = new (require('./api/v1').default)(app, server, pb, adminUser);
+    apiV1 = new ApiV1(app, server, pb, adminUser);
 
     Logger.log('API', 'API v1 loaded');
 })();

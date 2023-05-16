@@ -9,7 +9,7 @@ export default class ApiV1 {
         app.use("/api/v1", this.router);
 
         const apiPath = path.resolve(__dirname, "V1");
-        const apiFiles = fs.readdirSync(apiPath).filter((file) => file.endsWith(".ts"));
+        const apiFiles = fs.readdirSync(apiPath)
         apiFiles.splice(apiFiles.indexOf("base.ts"), 1);
 
         for (const file of apiFiles) {
