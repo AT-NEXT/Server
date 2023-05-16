@@ -15,6 +15,7 @@ let app = express();
 let server = createServerHttp(app);
 let pb = new PocketBase(process.env.POCKETBASE_URL as string);
 let adminUser: any;
+let apiV1: any;
 
 Logger.logClean(`
  ████████   ██████████    ███     ██  ██████████  ██      ██  ██████████
@@ -45,4 +46,12 @@ server.listen(3000, () => {
         process.env.ADMIN_USER as string,
         process.env.ADMIN_PASSWORD as string
     );
+
+    Logger.log('PocketBase', 'Admin user loaded');
+
+    Logger.log('API', 'Loading API v1');
+
+    apiV1 = new (require('./api/v1').default)(app, server, pb, adminUser);
+
+    Logger.log('API', 'API v1 loaded');
 })();
